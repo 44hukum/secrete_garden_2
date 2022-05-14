@@ -1,14 +1,14 @@
 
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:secrete_garden/about_secrete_garden.dart';
-import 'package:secrete_garden/cafe/cafe.dart';
-import 'package:secrete_garden/courses/courses.dart';
+import 'package:secrete_garden/src/about_secrete_garden.dart';
+import 'package:secrete_garden/src/cafe/cafe.dart';
+import 'package:secrete_garden/src/courses/courses.dart';
 import 'package:secrete_garden/main.dart';
-import 'package:secrete_garden/projects/projects.dart';
+import 'package:secrete_garden/src/projects/projects.dart';
+
 
 class SecreteGardenMap extends StatefulWidget {
   @override

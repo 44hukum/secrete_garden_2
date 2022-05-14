@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "445295268983",
+    "project_id": "secretegarden-f610e",
+    "storage_bucket": "secretegarden-f610e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445295268983:android:d8ecbd0b51f54868bea272",
+        "android_client_info": {
+          "package_name": "com.example.secrete_garden"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445295268983-5gtfn3m7l08ubibth00l6k5l8eu5reh8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9q8DJYIReALLOAf0e06sWYaiuA5-b9cY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445295268983-5gtfn3m7l08ubibth00l6k5l8eu5reh8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445295268983-b89ui018afpv95gu6k8rg07sj23ar0sm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.secreteGarden"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

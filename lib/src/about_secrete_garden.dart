@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:secrete_garden/cafe/cafe.dart';
-import 'package:secrete_garden/courses/courses.dart';
+import 'package:secrete_garden/src/cafe/cafe.dart';
+import 'package:secrete_garden/src/courses/courses.dart';
 import 'package:secrete_garden/main.dart';
-import 'package:secrete_garden/map.dart';
-import 'package:secrete_garden/projects/projects.dart';
+import 'package:secrete_garden/src/map.dart';
+import 'package:secrete_garden/src/projects/projects.dart';
 
 class AboutSecreteGarden extends StatefulWidget {
   const AboutSecreteGarden({Key? key}) : super(key: key);

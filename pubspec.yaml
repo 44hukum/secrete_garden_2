@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_markdown: ^0.6.10
   google_maps_flutter: ^2.1.4
+  firebase_core: ^1.12.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,15 @@ flutter:
       - assets/project/aboutus/aboutus.png
       - assets/project/aboutus/aboutus1.jpg
       - assets/project/aboutus/aboutus2.jpg
+      - assets/project/shop/overview.jpg
+      - assets/project/shop/Gazania.jpg
+      - assets/project/shop/Hedging.jpg
+      - assets/project/shop/Herbs.jpg
+      - assets/project/shop/Hydrangea.jpg
+      - assets/project/shop/lavender.jpg
+      - assets/project/shop/Natives.jpg
+      - assets/project/shop/Succulents.jpg
+      - assets/project/shop/salvia.jpg
 
 
 
