@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:secrete_garden/src/about_secrete_garden.dart';
@@ -8,6 +9,9 @@ import 'package:secrete_garden/src/cafe/cafe.dart';
 import 'package:secrete_garden/src/courses/courses.dart';
 import 'package:secrete_garden/main.dart';
 import 'package:secrete_garden/src/projects/projects.dart';
+import 'package:secrete_garden/src/shop/shop.dart';
+
+import '../registration.dart';
 
 
 class SecreteGardenMap extends StatefulWidget {
@@ -397,121 +401,148 @@ class _SecreteGardenMapState extends State<SecreteGardenMap> {
 
           ],
         ),
-        drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.lightGreen,
-                  image: DecorationImage(image: AssetImage('assets/logo.jpg')),
-                ),
-                child: Text(''),
-              ),
-              ListTile(
-                tileColor: Colors.lightGreen,
-                title: const Text(
-                  'About Us',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () {
-                  // Update the state of the app.
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AboutSecreteGarden()),
-                  );
-                  // ...
-                },
-              ),
-              ListTile(
-                tileColor: Colors.lightGreen,
-                title: const Text(
-                  'What We Do',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Projects()),
-                  );
-                },
-              ),
-              ListTile(
-                tileColor: Colors.lightGreen,
-                title: const Text(
-                  'Get Involved',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Courses()),
-                  );
-                },
-              ),
-              ListTile(
-                tileColor: Colors.lightGreen,
-                title: const Text(
-                  'Our Cafe',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Cafe()),
-                  );
-                },
-              ),
-              ListTile(
-                tileColor: Colors.limeAccent,
-                title: const Text(
-                  'Contact, Location & Hour',
-                  style: TextStyle(color: Colors.black),
-                ),
-                onTap: () {
-                  // Update the state of the app.
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SecreteGardenMap()));
-                  // ...
-                },
-              ),
-            ],
+       drawer: Drawer(
+      child: ListView(
+      // Important: Remove any padding from the ListView.
+      padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.lightGreen,
+              image: DecorationImage(image: AssetImage('assets/logo.jpg')),
+            ),
+            child: Text(''),
           ),
-        ),
+          ListTile(
+            tileColor: Colors.lightGreenAccent,
+            title: const Text(
+              'About Us',
+              style: TextStyle(color: Colors.black),
+            ),
+            onTap: () {
+              // Update the state of the app.
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutSecreteGarden()),
+              );
+              // ...
+            },
+          ),
+          ListTile(
+            tileColor: Colors.lightGreen,
+            title: const Text(
+              'What We Do',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Projects()),
+              );
+            },
+          ),
+          ListTile(
+            tileColor: Colors.lightGreen,
+            title: const Text(
+              'Get Involved',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Courses()),
+              );
+            },
+          ),
+          ListTile(
+            tileColor: Colors.lightGreen,
+            title: const Text(
+              'Our Cafe',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Cafe()),
+              );
+            },
+          ),
+          ListTile(
+            tileColor: Colors.lightGreen,
+            title: const Text(
+              'Contact, Location & Hour',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              // Update the state of the app.
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SecreteGardenMap()));
+              // ...
+            },
+          ),
+          ListTile(
+            tileColor: Colors.lightGreen,
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+
+              FirebaseAuth.instance.signOut().then((value){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecreteGardenForm()));
+              });
+              // Update the state of the app.
+
+              // ...
+            },
+          ),
+        ],
+      ),
+    ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',),
             BottomNavigationBarItem(
-                icon: Icon(Icons.umbrella), label: 'The Garden'),
-            BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Contact')
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.umbrella), label: 'About Us'),
+            BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Contact'),
+            BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
           ],
-          onTap:(int index){
-            if(index == 2){
+          onTap: (int index) {
+            if (index == 2) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SecreteGardenMap()),
               );
-            }if(index == 0){
+            }
+            if (index == 0) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyApp()),
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "The Secrete Garden")),
               );
             }
-
             if (index == 1) {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AboutSecreteGarden()),
               );
             }
-          } ,
+            if (index == 3) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Shop()),
+              );
+            }
+
+          },
         ),
       ),
     );

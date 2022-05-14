@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA9q8DJYIReALLOAf0e06sWYaiuA5-b9cY',
-    appId: '1:445295268983:android:d8ecbd0b51f54868bea272',
-    messagingSenderId: '445295268983',
-    projectId: 'secretegarden-f610e',
-    storageBucket: 'secretegarden-f610e.appspot.com',
+    apiKey: 'AIzaSyAYLPDxRuZAIKfT4kAHgZ-xYlANwu9yjZc',
+    appId: '1:277612568203:android:7ae73703cb2e181279be8e',
+    messagingSenderId: '277612568203',
+    projectId: 'secretegarden2-c8897',
+    storageBucket: 'secretegarden2-c8897.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAq6kLLx8E0outk1ZK7uCVxpq3oa4sfLIU',
-    appId: '1:445295268983:ios:eb194c96c03a7436bea272',
-    messagingSenderId: '445295268983',
-    projectId: 'secretegarden-f610e',
-    storageBucket: 'secretegarden-f610e.appspot.com',
-    iosClientId: '445295268983-b89ui018afpv95gu6k8rg07sj23ar0sm.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBDqnHWquWxB-qh7ADl6oh2LdhxNGzJhrk',
+    appId: '1:277612568203:ios:e907a15f6013f7f079be8e',
+    messagingSenderId: '277612568203',
+    projectId: 'secretegarden2-c8897',
+    storageBucket: 'secretegarden2-c8897.appspot.com',
+    iosClientId: '277612568203-35h6hijtkrh420flc4bokigrrfe6o670.apps.googleusercontent.com',
     iosBundleId: 'com.example.secreteGarden',
   );
 }

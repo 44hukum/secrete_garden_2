@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "277612568203",
+    "firebase_url": "https://secretegarden2-c8897-default-rtdb.firebaseio.com",
     "project_id": "secretegarden2-c8897",
     "storage_bucket": "secretegarden2-c8897.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "277612568203-d16v191ngn1k4iqc13h99g6u6hnms337.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "277612568203-35h6hijtkrh420flc4bokigrrfe6o670.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.secreteGarden"
+              }
             }
           ]
         }

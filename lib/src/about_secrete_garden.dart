@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:secrete_garden/src/cafe/cafe.dart';
@@ -5,6 +6,9 @@ import 'package:secrete_garden/src/courses/courses.dart';
 import 'package:secrete_garden/main.dart';
 import 'package:secrete_garden/src/map.dart';
 import 'package:secrete_garden/src/projects/projects.dart';
+import 'package:secrete_garden/src/shop/shop.dart';
+
+import '../registration.dart';
 
 class AboutSecreteGarden extends StatefulWidget {
   const AboutSecreteGarden({Key? key}) : super(key: key);
@@ -156,13 +160,12 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
                   // Update the state of the app.
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => AboutSecreteGarden()),
+                    MaterialPageRoute(builder: (context) => AboutSecreteGarden()),
                   );
                   // ...
                 },
               ),
-             ListTile(
+              ListTile(
                 tileColor: Colors.lightGreen,
                 title: const Text(
                   'What We Do',
@@ -171,8 +174,7 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => Projects()),
+                    MaterialPageRoute(builder: (context) => Projects()),
                   );
                 },
               ),
@@ -185,8 +187,7 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => Courses()),
+                    MaterialPageRoute(builder: (context) => Courses()),
                   );
                 },
               ),
@@ -199,8 +200,7 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => Cafe()),
+                    MaterialPageRoute(builder: (context) => Cafe()),
                   );
                 },
               ),
@@ -219,18 +219,39 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
                   // ...
                 },
               ),
+              ListTile(
+                tileColor: Colors.lightGreen,
+                title: const Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+
+                  FirebaseAuth.instance.signOut().then((value){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SecreteGardenForm()));
+                  });
+                  // Update the state of the app.
+
+                  // ...
+                },
+              ),
             ],
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.umbrella), label: 'About US'),
-            BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Contact')
+                icon: Icon(Icons.umbrella), label: 'About Us'),
+            BottomNavigationBarItem(icon: Icon(Icons.call), label: 'Contact'),
+            BottomNavigationBarItem(icon: Icon(Icons.shop), label: 'Shop'),
           ],
           onTap: (int index) {
             if (index == 2) {
@@ -242,10 +263,21 @@ class _AboutSecreteGardenState extends State<AboutSecreteGarden> {
             if (index == 0) {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MyApp()),
+                MaterialPageRoute(builder: (context) => MyHomePage(title: "The Secrete Garden")),
               );
             }
-
+            if (index == 1) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutSecreteGarden()),
+              );
+            }
+            if (index == 3) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Shop()),
+              );
+            }
 
           },
         ),

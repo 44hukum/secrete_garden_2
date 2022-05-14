@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
+
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -12,12 +17,24 @@ class _LoginState extends State<Login> {
 
   final email_controller = TextEditingController();
   final password_controller = TextEditingController();
+  int _loginfail = 0;
 
   @override
   void dispose() {
     email_controller.dispose();
     password_controller.dispose();
     super.dispose();
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _loginfail++;
+    });
   }
 
   @override
@@ -49,7 +66,7 @@ class _LoginState extends State<Login> {
                               border: OutlineInputBorder(), hintText: "Email"),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
+                              return 'Please enter your Email';
                             }
                             return null;
                           }),
@@ -57,14 +74,17 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
                           controller: password_controller,
                           decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "password"),
+                            border: OutlineInputBorder(),
+                            hintText: "password",
+                            // errorText:  _loginfail == 1 ? 'password not match' : null,
+                          ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
+                              return 'Please enter your your password';
                             }
                             return null;
                           }),
@@ -79,6 +99,20 @@ class _LoginState extends State<Login> {
 
                             print("${email_controller.text}");
                             print("${password_controller.text}");
+
+                            FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                                    email: email_controller.text,
+                                    password: password_controller.text)
+                                .then((value) {
+                              Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MyHomePage(
+                                                title: "The Secrete Garden",
+                                              )))
+                                  .onError((error, stackTrace) => {});
+                            });
                           }
                           //GET THE VALUE
 

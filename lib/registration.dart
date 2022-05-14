@@ -1,6 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:secrete_garden/main.dart';
 import 'package:secrete_garden/src/login_signup/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:firebase_database/firebase_database.dart';
+
 
 class SecreteGardenForm extends StatefulWidget {
   const SecreteGardenForm({Key? key}) : super(key: key);
@@ -16,6 +22,7 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
   final firstname_controller = TextEditingController();
   final lastname_controller = TextEditingController();
   final password_controller = TextEditingController();
+
 
   @override
   void dispose() {
@@ -36,7 +43,7 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Register'),
+          title: Text('Register To Use Secrete Garden'),
           backgroundColor: Colors.lightGreen,
         ),
         body: Column(
@@ -80,12 +87,13 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                           keyboardType: TextInputType.emailAddress,
+                          enableSuggestions: true,
                           controller: email_controller,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(), hintText: "Email"),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
+                              return 'Please enter your Email';
                             }
                             return null;
                           }),
@@ -93,7 +101,8 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.visiblePassword,
+                          obscureText: true,
                           controller: password_controller,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
@@ -106,18 +115,23 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
                           }),
                     ),
                     ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+
                           if (_formKey.currentState!.validate()) {
                             //if is valid then we would send a  validate the user and send is valid
                             ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Processing Data')));
+                            FirebaseAuth.instance.createUserWithEmailAndPassword(email: email_controller.text, password: password_controller.text).then((value) =>
+                               Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage(title: "The Secrete Garden",)))
 
-                            print("${email_controller.text}");
-                            print("${firstname_controller.text}");
-                            print("${lastname_controller.text}");
-                            print("${password_controller.text}");
+
+                           ).onError((error, stackTrace) =>
+                              print("ERROR ${error.toString()}")
+                            );
+
                           }
+
                           //GET THE VALUE
 
                           //UPDATE THE VALUE

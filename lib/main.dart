@@ -1,5 +1,10 @@
 import 'dart:async';
 
+
+
+
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:secrete_garden/registration.dart';
 import 'package:secrete_garden/src/about_secrete_garden.dart';
@@ -9,17 +14,25 @@ import 'package:secrete_garden/src/map.dart';
 import 'package:secrete_garden/src/projects/projects.dart';
 import 'package:secrete_garden/src/shop/shop.dart';
 import 'package:secrete_garden/src/volunteering/volunteering.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+
+
+
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Ideal time to initialize
+  await Firebase.initializeApp();
+ runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+
+
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -31,29 +44,25 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lightGreen,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const MyHomePage(title: 'Secret Garden'),
+      home: SecreteGardenForm()  //MyHomePage(title: 'Secret Garden')
+      //
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
+
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Completer<GoogleMapController> _controller = Completer();
-  static const LatLng _center = const LatLng(45.521563, -122.677433);
 
-  void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
-  }
-
-  @override
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -387,15 +396,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               tileColor: Colors.lightGreen,
               title: const Text(
-                'Register or Login',
+                'Logout',
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
+
+                FirebaseAuth.instance.signOut().then((value){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SecreteGardenForm()));
+                });
                 // Update the state of the app.
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SecreteGardenForm()));
+
                 // ...
               },
             ),
@@ -422,7 +435,12 @@ class _MyHomePageState extends State<MyHomePage> {
               MaterialPageRoute(builder: (context) => SecreteGardenMap()),
             );
           }
-          if (index == 0) {}
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyHomePage(title: "The Secrete Garden")),
+            );
+          }
           if (index == 1) {
             Navigator.push(
               context,
