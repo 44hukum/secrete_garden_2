@@ -46,109 +46,122 @@ class _SecreteGardenFormState extends State<SecreteGardenForm> {
           title: Text('Register To Use Secrete Garden'),
           backgroundColor: Colors.lightGreen,
         ),
-        body: Column(
+        body: ListView(
           children: [
-            Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    //firstname
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          controller: firstname_controller,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "First Name"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
-                            }
-                            return null;
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          controller: lastname_controller,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "last Name"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
-                            }
-                            return null;
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          enableSuggestions: true,
-                          controller: email_controller,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(), hintText: "Email"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your Email';
-                            }
-                            return null;
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          controller: password_controller,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              hintText: "password"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your First Name';
-                            }
-                            return null;
-                          }),
-                    ),
-                    ElevatedButton(
-                        onPressed: () async {
-
-                          if (_formKey.currentState!.validate()) {
-                            //if is valid then we would send a  validate the user and send is valid
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')));
-                            FirebaseAuth.instance.createUserWithEmailAndPassword(email: email_controller.text, password: password_controller.text).then((value) =>
-                               Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage(title: "The Secrete Garden",)))
-
-
-                           ).onError((error, stackTrace) =>
-                              print("ERROR ${error.toString()}")
-                            );
-
-                          }
-
-                          //GET THE VALUE
-
-                          //UPDATE THE VALUE
-                        },
-                        child: const Text('Signup'))
-                  ],
-                )),
             Container(
-              child: TextButton(
-                onPressed: () => {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Login()))
-                },
-                child: Text("Already registered ? Login"),
+              height: 200,
+              width: 200,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/logo.jpg"),
+                    fit: BoxFit.fitWidth),
               ),
-            )
-          ],
+              // Foreground widget here
+            ),
+            Column(
+            children: [
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      //firstname
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            controller: firstname_controller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "First Name"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your First Name';
+                              }
+                              return null;
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            controller: lastname_controller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "last Name"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your First Name';
+                              }
+                              return null;
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            enableSuggestions: true,
+                            controller: email_controller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(), hintText: "Email"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your Email';
+                              }
+                              return null;
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                            keyboardType: TextInputType.visiblePassword,
+                            obscureText: true,
+                            controller: password_controller,
+                            decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "password"),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your First Name';
+                              }
+                              return null;
+                            }),
+                      ),
+                      ElevatedButton(
+                          onPressed: () async {
+
+                            if (_formKey.currentState!.validate()) {
+                              //if is valid then we would send a  validate the user and send is valid
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Processing Data')));
+                              FirebaseAuth.instance.createUserWithEmailAndPassword(email: email_controller.text, password: password_controller.text).then((value) =>
+                                 Navigator.push(context, MaterialPageRoute(builder: (context)=> MyHomePage(title: "The Secret Garden",)))
+
+
+                             ).onError((error, stackTrace) =>
+                                print("ERROR ${error.toString()}")
+                              );
+
+                            }
+
+                            //GET THE VALUE
+
+                            //UPDATE THE VALUE
+                          },
+                          child: const Text('Signup'))
+                    ],
+                  )),
+              Container(
+                child: TextButton(
+                  onPressed: () => {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => Login()))
+                  },
+                  child: Text("Already registered ? Login"),
+                ),
+              )
+            ],
+          )],
         ),
       ),
     );

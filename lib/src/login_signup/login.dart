@@ -50,87 +50,101 @@ class _LoginState extends State<Login> {
           title: Text('Login'),
           backgroundColor: Colors.lightGreen,
         ),
-        body: Column(
+        body: ListView(
           children: [
-            Form(
-                key: _loginFormKey,
-                child: Column(
-                  children: <Widget>[
-                    //firstname
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          controller: email_controller,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(), hintText: "Email"),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your Email';
-                            }
-                            return null;
-                          }),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextFormField(
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: true,
-                          controller: password_controller,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "password",
-                            // errorText:  _loginfail == 1 ? 'password not match' : null,
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your your password';
-                            }
-                            return null;
-                          }),
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          if (_loginFormKey.currentState!.validate()) {
-                            //if is valid then we would send a  validate the user and send is valid
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')));
+            Container(
+                height: 200,
+                width: 200,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/logo.jpg"),
+                      fit: BoxFit.fitWidth),
+                ),
+               // Foreground widget here
+            ),
+            Column(
+              children: [
+                Form(
+                    key: _loginFormKey,
+                    child: Column(
+                      children: <Widget>[
+                        //firstname
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                              keyboardType: TextInputType.emailAddress,
+                              controller: email_controller,
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder(), hintText: "Email"),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your Email';
+                                }
+                                return null;
+                              }),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextFormField(
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: true,
+                              controller: password_controller,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: "password",
+                                // errorText:  _loginfail == 1 ? 'password not match' : null,
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your your password';
+                                }
+                                return null;
+                              }),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              if (_loginFormKey.currentState!.validate()) {
+                                //if is valid then we would send a  validate the user and send is valid
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text('Processing Data')));
 
-                            print("${email_controller.text}");
-                            print("${password_controller.text}");
+                                print("${email_controller.text}");
+                                print("${password_controller.text}");
 
-                            FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
+                                FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
                                     email: email_controller.text,
                                     password: password_controller.text)
-                                .then((value) {
-                              Navigator.push(
+                                    .then((value) {
+                                  Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => MyHomePage(
-                                                title: "The Secrete Garden",
-                                              )))
-                                  .onError((error, stackTrace) => {});
-                            });
-                          }
-                          //GET THE VALUE
+                                            title: "The Secret Garden",
+                                          )))
+                                      .onError((error, stackTrace) => {});
+                                });
+                              }
+                              //GET THE VALUE
 
-                          //UPDATE THE VALUE
-                        },
-                        child: const Text('Login'))
-                  ],
-                )),
-            Container(
-              child: TextButton(
-                onPressed: () => {
-                  Navigator.pop(
-                      context, MaterialPageRoute(builder: (context) => Login()))
-                },
-                child: Text("Not Registered ? Signup"),
-              ),
+                              //UPDATE THE VALUE
+                            },
+                            child: const Text('Login'))
+                      ],
+                    )),
+                Container(
+                  child: TextButton(
+                    onPressed: () => {
+                      Navigator.pop(
+                          context, MaterialPageRoute(builder: (context) => Login()))
+                    },
+                    child: Text("Not Registered ? Signup"),
+                  ),
+                )
+              ],
             )
-          ],
+            ],
         ),
       ),
     );
